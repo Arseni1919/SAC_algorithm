@@ -36,7 +36,8 @@ Algorithm's net:
 - [Policy Gradient Algorithms | Lilian Weng's Blog](https://lilianweng.github.io/lil-log/2018/04/08/policy-gradient-algorithms.html)
 - [DATASETS & DATALOADERS | PyTorch](https://pytorch.org/tutorials/beginner/basics/data_tutorial.html)
 - [SAVING AND LOADING MODELS | PyTorch](https://pytorch.org/tutorials/beginner/saving_loading_models.html)
-- [Reparameterization trick](https://stats.stackexchange.com/a/226136)
+- [Reparameterization Trick](https://stats.stackexchange.com/a/226136)
+- [SAC implementation | TDS](https://towardsdatascience.com/soft-actor-critic-demystified-b8427df61665) [(code)](https://github.com/vaishak2future/sac/blob/master/sac.ipynb)
 
 
 
