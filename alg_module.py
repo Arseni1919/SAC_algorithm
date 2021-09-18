@@ -124,7 +124,7 @@ class ALGModule:
         log_probs = normal_dist.log_prob(new_actions)
         log_probs = torch.nan_to_num(log_probs)
         log_policy_a_s = log_probs - torch.log(1 - new_actions.pow(2))
-        log_policy_a_s = torch.sum(log_policy_a_s, axis=1)
+        log_policy_a_s = torch.sum(log_policy_a_s, dim=1)
         subtraction = torch.sub(torch.squeeze(min_Q_vals), log_policy_a_s, alpha=ALPHA)
         return rewards.float() + GAMMA * (~dones).float() * subtraction
 
@@ -132,16 +132,22 @@ class ALGModule:
         self.actor_opt.zero_grad()
         means, stds = self.actor_net(states)
         normal_dist = Normal(loc=means, scale=stds)
-        new_actions = normal_dist.rsample()
+        new_actions_before_tanh = normal_dist.rsample()
+        new_actions = torch.tanh(new_actions_before_tanh)
 
+        # minimum out of Q functions
         Q_target_vals_1 = self.critic_target_net_1(next_states, new_actions)
         Q_target_vals_2 = self.critic_target_net_2(next_states, new_actions)
         min_Q_vals = torch.minimum(Q_target_vals_1, Q_target_vals_2)
 
-        log_policy_a_s = normal_dist.log_prob(new_actions) - torch.sum(torch.log(1 - new_actions.pow(2)))
+        # log of policy of a certain action given certain state
+        first_term = normal_dist.log_prob(new_actions_before_tanh)
+        second_term = torch.log(1 - new_actions.pow(2) + EPSILON)
+        log_policy_a_s_before_sum = first_term - second_term
+        log_policy_a_s = torch.sum(log_policy_a_s_before_sum, dim=1)
 
-        actor_loss = min_Q_vals - ALPHA * log_policy_a_s
-        actor_loss = - actor_loss.mean()
+        subtraction = torch.sub(torch.squeeze(min_Q_vals), log_policy_a_s, alpha=ALPHA)
+        actor_loss = - subtraction.mean()
         actor_loss.backward()
         self.actor_opt.step()
         return actor_loss

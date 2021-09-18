@@ -52,6 +52,7 @@ LR_CRITIC = 3e-4  # learning rate
 LR_ACTOR = 3e-3  # learning rate
 GAMMA = 0.99  # discount factor
 ALPHA = 0.2
+EPSILON = 0.00001
 ACT_NOISE = 0.5  # actuator noise
 POLYAK = 0.999
 VAL_CHECKPOINT_INTERVAL = 250
