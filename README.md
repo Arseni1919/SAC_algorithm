@@ -10,7 +10,7 @@
 
 ## `LunarLanderContinuous-v2` parameters:
 ```
-
+No good implementation
 ```
 
 Algorithm's net:
@@ -20,7 +20,7 @@ Algorithm's net:
 
 ## `BipedalWalker-v3` parameters:
 ```
-
+No good implementation
 ```
 
 Algorithm's net:
