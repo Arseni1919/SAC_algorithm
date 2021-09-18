@@ -37,8 +37,10 @@ Algorithm's net:
 - [DATASETS & DATALOADERS | PyTorch](https://pytorch.org/tutorials/beginner/basics/data_tutorial.html)
 - [SAVING AND LOADING MODELS | PyTorch](https://pytorch.org/tutorials/beginner/saving_loading_models.html)
 - [PROBABILITY DISTRIBUTIONS - TORCH.DISTRIBUTIONS | PyTorch](https://pytorch.org/docs/stable/distributions.html)
+- [AUTOGRAD MECHANICS | PyTorch](https://pytorch.org/docs/stable/notes/autograd.html#locally-disable-grad-doc)
 - [Reparameterization Trick](https://stats.stackexchange.com/a/226136)
 - [SAC implementation | TDS](https://towardsdatascience.com/soft-actor-critic-demystified-b8427df61665), [(code)](https://github.com/vaishak2future/sac/blob/master/sac.ipynb)
+- [Probability density function | Wikipedia](https://en.wikipedia.org/wiki/Probability_density_function)
 
 
 

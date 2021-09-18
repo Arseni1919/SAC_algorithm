@@ -19,8 +19,14 @@ class ActorNet(nn.Module):
             nn.ReLU(),
             nn.Linear(HIDDEN_SIZE, HIDDEN_SIZE),
             nn.ReLU(),
+        )
+
+        self.mean_head = nn.Sequential(
             nn.Linear(HIDDEN_SIZE, n_actions),
-            nn.Tanh()
+        )
+
+        self.std_head = nn.Sequential(
+            nn.Linear(HIDDEN_SIZE, n_actions),
         )
 
         self.n_actions = n_actions
@@ -33,8 +39,18 @@ class ActorNet(nn.Module):
         state = state.float()
         value = self.net(state)
         value = value.float()
+        mean = self.mean_head(value)
+        std = self.std_head(value)
+        return mean, std
 
-        return value
+    @torch.no_grad()
+    def get_action(self, state):
+        mean, std = self(state)
+        normal_dist = Normal(loc=mean, scale=std)
+        action = torch.tanh(normal_dist.sample())
+        action = action.float().detach()
+        # log_policy_a_s = normal_dist.log_prob(action) - torch.sum(torch.log(1 - action.pow(2)))
+        return action
 
 
 class CriticNet(nn.Module):
