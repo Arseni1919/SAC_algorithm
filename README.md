@@ -41,6 +41,7 @@ Algorithm's net:
 - [Reparameterization Trick](https://stats.stackexchange.com/a/226136)
 - [SAC implementation | TDS](https://towardsdatascience.com/soft-actor-critic-demystified-b8427df61665), [(code)](https://github.com/vaishak2future/sac/blob/master/sac.ipynb)
 - [Probability density function | Wikipedia](https://en.wikipedia.org/wiki/Probability_density_function)
+- [Change of variables: Apply tanh to the Gaussian samples | math.stackexchange.com](https://math.stackexchange.com/a/3283855)
 
 
 

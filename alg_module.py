@@ -121,7 +121,9 @@ class ALGModule:
         min_Q_vals = torch.minimum(Q_target_vals_1, Q_target_vals_2)
 
         normal_dist = Normal(loc=means, scale=stds)
-        log_policy_a_s = normal_dist.log_prob(new_actions) - torch.sum(torch.log(1 - new_actions.pow(2)))
+        log_probs = normal_dist.log_prob(new_actions)
+        log_probs = torch.nan_to_num(log_probs)
+        log_policy_a_s = log_probs - torch.log(1 - new_actions.pow(2))
         return rewards.float() + GAMMA * (~dones).float() * torch.squeeze(min_Q_vals - ALPHA * log_policy_a_s)
 
     def execute_policy_gradient_ascent(self, states, actions, rewards, dones, next_states):

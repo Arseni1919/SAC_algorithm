@@ -46,6 +46,8 @@ class ActorNet(nn.Module):
     @torch.no_grad()
     def get_action(self, state):
         mean, std = self(state)
+        mean = torch.squeeze(mean)
+        std = torch.squeeze(std)
         normal_dist = Normal(loc=mean, scale=std)
         action = torch.tanh(normal_dist.sample())
         action = action.float().detach()
