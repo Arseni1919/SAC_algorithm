@@ -27,6 +27,7 @@ class ActorNet(nn.Module):
 
         self.std_head = nn.Sequential(
             nn.Linear(HIDDEN_SIZE, n_actions),
+            nn.Softplus()
         )
 
         self.n_actions = n_actions

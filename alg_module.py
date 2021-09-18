@@ -124,7 +124,9 @@ class ALGModule:
         log_probs = normal_dist.log_prob(new_actions)
         log_probs = torch.nan_to_num(log_probs)
         log_policy_a_s = log_probs - torch.log(1 - new_actions.pow(2))
-        return rewards.float() + GAMMA * (~dones).float() * torch.squeeze(min_Q_vals - ALPHA * log_policy_a_s)
+        log_policy_a_s = torch.sum(log_policy_a_s, axis=1)
+        subtraction = torch.sub(torch.squeeze(min_Q_vals), log_policy_a_s, alpha=ALPHA)
+        return rewards.float() + GAMMA * (~dones).float() * subtraction
 
     def execute_policy_gradient_ascent(self, states, actions, rewards, dones, next_states):
         self.actor_opt.zero_grad()
