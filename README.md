@@ -38,6 +38,7 @@ Algorithm's net:
 - [SAVING AND LOADING MODELS | PyTorch](https://pytorch.org/tutorials/beginner/saving_loading_models.html)
 - [PROBABILITY DISTRIBUTIONS - TORCH.DISTRIBUTIONS | PyTorch](https://pytorch.org/docs/stable/distributions.html)
 - [SOURCE CODE FOR TORCH.DISTRIBUTIONS.NORMAL | PyTorch](https://pytorch.org/docs/stable/_modules/torch/distributions/normal.html)
+- [SOFTPLUS | PyTorch](https://pytorch.org/docs/stable/generated/torch.nn.Softplus.html#torch.nn.Softplus)
 - [AUTOGRAD MECHANICS | PyTorch](https://pytorch.org/docs/stable/notes/autograd.html#locally-disable-grad-doc)
 - [Reparameterization Trick](https://stats.stackexchange.com/a/226136)
 - [SAC implementation | TDS](https://towardsdatascience.com/soft-actor-critic-demystified-b8427df61665), [(code)](https://github.com/vaishak2future/sac/blob/master/sac.ipynb)
