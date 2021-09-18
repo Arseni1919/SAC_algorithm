@@ -44,9 +44,9 @@ def train():
 
     # Save Results
     if SAVE_RESULTS:
-        torch.save(actor_net, 'actor_target_net.pt')
+        torch.save(actor_net, 'actor_net.pt')
         # example runs
-        model = torch.load('actor_target_net.pt')
+        model = torch.load('actor_net.pt')
         model.eval()
         play(10, model=model)
 
